@@ -1,5 +1,5 @@
 import TileGrid from './TileGrid';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 
 const TileRotationPage = ({receivedRows = 2, receivedCols = 2, imgLink}) => {
     const [imgLoaded, setImgLoaded] = useState(false);
@@ -8,6 +8,9 @@ const TileRotationPage = ({receivedRows = 2, receivedCols = 2, imgLink}) => {
     const [pieces, setPieces] = useState({rows: receivedRows, cols: receivedCols});
     const [imgArr, setImgArr] = useState([]);
     const [gameWon, setGameWon] = useState(false);
+    const [timeTaken, setTimeTaken] = useState('00:00');
+    const timeRef = useRef();
+    const [timer, setTimer] = useState(undefined);
     const SCALER = 0.8;
 
 
@@ -31,17 +34,34 @@ const TileRotationPage = ({receivedRows = 2, receivedCols = 2, imgLink}) => {
             setImgArr(arr);
 
             setImgLoaded(true);
+
         };
+        timerTick();
     }, []);
 
 
     function checkWin(arr = imgArr) {
         const result = (arr.filter((element) => element.rot % 4 !== 0)).length === 0;
         if (result) {
+            clearInterval(timer);
             setGameWon(true);
-            // setImgLoaded(false);
         }
         return result;
+    }
+
+
+    function timerTick() {
+        const timerID = setInterval(() => {
+            let [waste, mins, secs] = timeRef.current.innerText.split(':');
+            mins = parseInt(mins);
+            secs = parseInt(secs) + 1;
+            if (secs >= 60) {
+                secs = 0;
+                mins++;
+            }
+            timeRef.current.innerText = (`Time: ${((''+mins).length === 1)?'0'+mins:mins}:${((''+secs).length === 1)?'0'+secs:secs}`);
+        }, 1000);
+        setTimer(timerID);
     }
 
 
@@ -62,6 +82,7 @@ const TileRotationPage = ({receivedRows = 2, receivedCols = 2, imgLink}) => {
             {(gameWon)?<h1 className='grid-container'>You Win!</h1>:null}
             {(imgLoaded)?<TileGrid gridImg={gridImg} imgWH={imgWH} imgArr={imgArr} 
             rows={pieces.rows} cols={pieces.cols} checkWin={checkWin}/>:null}
+            <p className='grid-container timer' ref={timeRef}>Time: {timeTaken}</p>
         </div>
     );
 };

@@ -18,3 +18,8 @@
     display: flex;
     justify-content: center;
 }
+
+.timer {
+    margin-top: 1em;
+    font-size: 1.2em;
+}

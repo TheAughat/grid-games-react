@@ -78,7 +78,7 @@ const TileRotationMenu = () => {
                 {/* <div>images</div> */}
                 <select ref={imgRef}>
                     {links.map((img, index) => {
-                        return <option>Image {index + 1}</option>
+                        return <option key={index}>Image {index + 1}</option>
                     })}
                 </select>
                 <h3>Select difficulty:</h3>
