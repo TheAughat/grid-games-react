@@ -7,15 +7,13 @@ const TileRotationMenu = () => {
         'https://cdn.discordapp.com/attachments/855481815065296950/961621406553083904/definitive_logo.png',
         'https://cdn.discordapp.com/attachments/855481815065296950/963953582711898132/24845333_132666047401743_5967991833865748480_n.jpg',
         'https://cdn.discordapp.com/attachments/855481815065296950/963953663636832306/rcd2.png',
-        'https://cdn.discordapp.com/attachments/855481815065296950/963953676035194890/rcd3.png',
+        'https://cdn.discordapp.com/attachments/855481815065296950/968677672752410704/4.png',
         'https://cdn.discordapp.com/attachments/855481815065296950/963954154307465276/3.png',
         'https://cdn.discordapp.com/attachments/855481815065296950/963954289049485323/2.png',
         'https://cdn.discordapp.com/attachments/855481815065296950/964210152083439616/7.png',
         'https://cdn.discordapp.com/attachments/855481815065296950/964210151026458694/8.png',
         'https://cdn.discordapp.com/attachments/855481815065296950/964210151391371274/9.png',
         'https://cdn.discordapp.com/attachments/855481815065296950/964210151768870942/10.png',
-
-        
     ];
     const [begunGame, setBegunGame] = useState(false);
     const [difficulty, setDifficulty] = useState({rows: 3, cols: 3});
